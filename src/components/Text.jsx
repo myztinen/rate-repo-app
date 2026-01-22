@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
   fontWeightBold: {
     fontWeight: textTheme.fontWeights.bold,
   },
+  inputField: {
+    fontWeight: textTheme.fontWeights.bold,
+    borderWidth: 1,
+    padding: 10,
+  },
 });
 
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
