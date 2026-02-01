@@ -3,6 +3,8 @@ import Text from './Text';
 import { TextInput, Pressable, View, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
 import { textTheme } from '../theme';
+import useSignIn from '../hooks/useSignIn'
+import { useNavigate } from 'react-router-native';
 
 
 const styles = StyleSheet.create({
@@ -100,8 +102,20 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = (values) => {
+  const { signIn } = useSignIn();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
     console.log(values);
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+      navigate('/', { replace: true });
+    } catch (e) {
+      console.log(e);
+    }
   };
   return <SignInForm onSubmit={onSubmit} />;
 };

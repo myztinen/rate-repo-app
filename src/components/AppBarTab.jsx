@@ -1,6 +1,10 @@
 import { StyleSheet, Text, ScrollView } from 'react-native';
 import { Link } from "react-router-native";
+import { useQuery, useApolloClient } from '@apollo/client';
 import theme from '../theme';
+import { GET_ME } from '../graphql/queries';
+import useAuthStorage from '../hooks/useAuthStorage';
+
 
 const styles = StyleSheet.create({
   text: {
@@ -19,14 +23,33 @@ const styles = StyleSheet.create({
 });
 
 const AppBarTab = () => {
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
+  const { data } = useQuery(GET_ME, {
+    fetchPolicy: 'cache-and-network',
+  });
+  const isSigned = Boolean(data?.me);
+
+  const signOut = async () => {
+    await authStorage.removeAccessToken();
+    await apolloClient.resetStore();
+  };
+
+
   return (
     <ScrollView contentContainerStyle={styles.containerRow} showsHorizontalScrollIndicator={false} horizontal>
       <Link to="/">
         <Text style={styles.text}>Repositories</Text>
       </Link>
-      <Link to="/signin">
-        <Text style={styles.text}>Sign in</Text>
-      </Link>
+      {isSigned ? (
+        <Link to="/">
+          <Text style={styles.text} onPress={signOut}>Sign out</Text>
+        </Link>
+      ) : (
+        <Link to="/signin">
+          <Text style={styles.text}>Sign in</Text>
+        </Link>
+      )}
     </ScrollView>
   )
 };
