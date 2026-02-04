@@ -7,13 +7,13 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff',
-    padding:5,
+    padding: 5,
     borderRadius: 5
   },
   containerRow: {
     flex: 1,
     flexDirection: 'row',
-    gap: 5    
+    gap: 5
   },
   containerColumn: {
     flex: 2,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     //width: '20%',
-    
+
   },
   statColumn: {
     flexDirection: 'column',
@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
-    <RepositoryHeader item={item} styles={styles} />
-    <RepositoryStats item={item} styles={styles} />
+    <View testID="repositoryItem" style={styles.container}>
+      <RepositoryHeader item={item} styles={styles} />
+      <RepositoryStats item={item} styles={styles} />
     </View>
   );
 };

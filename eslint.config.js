@@ -2,6 +2,7 @@ const { defineConfig } = require("eslint/config");
 const js = require("@eslint/js");
 const react = require("eslint-plugin-react");
 const reactNative = require("eslint-plugin-react-native");
+const jest = require("eslint-plugin-jest");
 const babelParser = require("@babel/eslint-parser");
 
 module.exports = defineConfig([
@@ -31,6 +32,23 @@ module.exports = defineConfig([
       ...react.configs.recommended.rules,
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
+    },
+  },
+  {
+    files: [
+      "**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "**/*.{test,spec}.{js,jsx,ts,tsx}",
+    ],
+    languageOptions: {
+      globals: {
+        ...(jest.environments?.globals ?? {}),
+      },
+    },
+    plugins: {
+      jest,
+    },
+    rules: {
+      ...jest.configs.recommended.rules,
     },
   },
 ]);
