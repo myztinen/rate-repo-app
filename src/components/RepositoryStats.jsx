@@ -1,7 +1,9 @@
 import { Text, View } from 'react-native';
+import { thousandify } from '../utils/formatter';
 
 
 const RepositoryStats = ({ item, styles }) => {
+
     return (
         <View style={styles.statRow}>
             <View style={styles.statColumn}>
@@ -9,11 +11,15 @@ const RepositoryStats = ({ item, styles }) => {
                 <Text style={styles.descriptionText}>Language</Text>
             </View>
             <View style={styles.statColumn}>
-                <Text testID="stargazers" style={styles.header}>{item.stargazersCount}</Text>
+                <Text testID="stargazers" style={styles.header}>
+                    {thousandify(item.stargazersCount)}
+                </Text>
                 <Text style={styles.descriptionText}>Stars</Text>
             </View>
             <View style={styles.statColumn}>
-                <Text style={styles.header}>{item.forksCount}</Text>
+                <Text testID="forkCount" style={styles.header}>
+                    {thousandify(item.forksCount)}
+                </Text>
                 <Text style={styles.descriptionText}>Forks</Text>
             </View>
             <View style={styles.statColumn}>

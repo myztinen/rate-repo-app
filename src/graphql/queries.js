@@ -31,3 +31,18 @@ export const GET_ME = gql`
   }
 `;
 
+export const GET_REPOSITORY = gql`
+  query Repository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      ownerAvatarUrl
+      url
+      language
+      ratingAverage
+      reviewCount
+      stargazersCount
+      forksCount
+    }
+  }
+`;

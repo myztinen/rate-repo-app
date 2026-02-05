@@ -1,6 +1,7 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem'
 import useRepositories from '../hooks/useRepositories';
+import theme from '../theme';
 
 const styles = StyleSheet.create({
   separator: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   },
   list: {
     padding: 10,
-    backgroundColor: '#e1e4e8',
+    backgroundColor: theme.textTheme.backgrounds.grey,
   },
 });
 

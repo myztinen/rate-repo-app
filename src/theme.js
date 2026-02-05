@@ -27,6 +27,7 @@ export const textTheme = {
   backgrounds: {
     normal: '#ffffff',
     blue: '#0366d6',
+    grey: '#e1e4e8'
   },
 };
 

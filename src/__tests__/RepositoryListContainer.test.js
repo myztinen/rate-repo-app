@@ -1,6 +1,9 @@
 import { Text, TextInput, Pressable, View } from 'react-native';
 import { RepositoryListContainer } from '../components/RepositoryList'
 import { render, fireEvent, screen, within } from '@testing-library/react-native';
+import { NativeRouter } from 'react-router-native';
+import { thousandify } from '../utils/formatter';
+
 
 describe('RepositoryList', () => {
     describe('RepositoryListContainer', () => {
@@ -49,20 +52,22 @@ describe('RepositoryList', () => {
             };
 
 
-            render(<RepositoryListContainer repositories={repositories} />);
+
+
+            render(<NativeRouter><RepositoryListContainer repositories={repositories} /></NativeRouter>);
             const repositoryItems = screen.getAllByTestId('repositoryItem');
             const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;
             expect(within(firstRepositoryItem).getByTestId('repoName')).toHaveTextContent(repositories.edges[0].node.fullName);
             expect(within(firstRepositoryItem).getByTestId('description')).toHaveTextContent(repositories.edges[0].node.description);
             expect(within(firstRepositoryItem).getByTestId('language')).toHaveTextContent(repositories.edges[0].node.language);
-            expect(within(firstRepositoryItem).getByTestId('stargazers')).toHaveTextContent(String(repositories.edges[0].node.stargazersCount));
-            expect(within(firstRepositoryItem).getByTestId('reviewCount')).toHaveTextContent(String(repositories.edges[0].node.reviewCount));
+            expect(within(firstRepositoryItem).getByTestId('stargazers')).toHaveTextContent(String(thousandify(repositories.edges[0].node.stargazersCount)));
+            expect(within(firstRepositoryItem).getByTestId('reviewCount')).toHaveTextContent(String(thousandify(repositories.edges[0].node.reviewCount)));
             expect(within(firstRepositoryItem).getByTestId('ratingAverage')).toHaveTextContent(String(repositories.edges[0].node.ratingAverage));
             expect(within(secondRepositoryItem).getByTestId('repoName')).toHaveTextContent(repositories.edges[1].node.fullName);
             expect(within(secondRepositoryItem).getByTestId('description')).toHaveTextContent(repositories.edges[1].node.description);
             expect(within(secondRepositoryItem).getByTestId('language')).toHaveTextContent(repositories.edges[1].node.language);
-            expect(within(secondRepositoryItem).getByTestId('stargazers')).toHaveTextContent(String(repositories.edges[1].node.stargazersCount));
-            expect(within(secondRepositoryItem).getByTestId('reviewCount')).toHaveTextContent(String(repositories.edges[1].node.reviewCount));
+            expect(within(secondRepositoryItem).getByTestId('stargazers')).toHaveTextContent(String(thousandify(repositories.edges[1].node.stargazersCount)));
+            expect(within(secondRepositoryItem).getByTestId('reviewCount')).toHaveTextContent(String(thousandify(repositories.edges[1].node.reviewCount)));
             expect(within(secondRepositoryItem).getByTestId('ratingAverage')).toHaveTextContent(String(repositories.edges[1].node.ratingAverage));
         });
     });
