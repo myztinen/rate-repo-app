@@ -23,8 +23,28 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 5,
   },
+  ratingStyle: {
+    width: 50,
+    height: 50,
+    borderWidth: 2,
+    borderColor: theme.textTheme.colors.primary,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ratingText: {
+    fontSize: theme.textTheme.fontSizes.body,
+    fontWeight: theme.textTheme.fontWeights.bold,
+    color: theme.textTheme.colors.primary,
+  },
   descriptionText: {
     color: theme.textTheme.colors.textSecondary,
+    fontSize: theme.textTheme.fontSizes.body,
+    fontFamily: theme.textTheme.fonts.main,
+    fontWeight: theme.textTheme.fontWeights.normal,
+  },
+  reviewText: {
+    color: theme.textTheme.colors.textBlack,
     fontSize: theme.textTheme.fontSizes.body,
     fontFamily: theme.textTheme.fonts.main,
     fontWeight: theme.textTheme.fontWeights.normal,
@@ -33,6 +53,7 @@ const styles = StyleSheet.create({
     fontSize: theme.textTheme.fontSizes.subheading,
     fontFamily: theme.textTheme.fonts.main,
     fontWeight: theme.textTheme.fontWeights.bold,
+    color: theme.textTheme.colors.textBlack,
   },
   badge: {
     backgroundColor: theme.textTheme.colors.primary,
