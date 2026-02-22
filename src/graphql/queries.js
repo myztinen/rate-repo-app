@@ -44,6 +44,9 @@ export const GET_ME = gql`
               id
               username
             }
+            repository {
+              fullName
+            }
           }
         }
       }

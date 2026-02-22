@@ -96,6 +96,57 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: theme.textTheme.backgrounds.grey,
   },
+  pickerStyle: {
+    backgroundColor: theme.textTheme.backgrounds.normal,
+    borderRadius: 6,
+    marginBottom: 10,
+    overflow: 'hidden',
+    borderColor: theme.textTheme.colors.textBlack,
+    borderWidth: 1
+  },
+  searchStyle: {
+    height: 10,
+    backgroundColor: theme.textTheme.backgrounds.normal,
+    borderRadius: 6,
+    marginBottom: 10,
+    overflow: 'hidden',
+    borderColor: theme.textTheme.colors.textBlack,
+    borderWidth: 1
+  },
+});
+
+export const formStyles = StyleSheet.create({
+
+  inputField: {
+    fontWeight: theme.textTheme.fontWeights.normal,
+    borderWidth: 1,
+    padding: 3,
+    color: theme.textTheme.colors.textBlack,
+
+  },
+  inputInError: {
+    borderColor: theme.textTheme.colors.errorRed
+  },
+  containerColumn: {
+    flex: 2,
+    flexDirection: 'column',
+    rowGap: 5,
+    alignItems: 'stretch',
+    padding: 10,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: theme.textTheme.backgrounds.blue,
+    paddingVertical: 10,
+    borderRadius: 4,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: theme.textTheme.colors.textPrimary,
+    fontSize: theme.textTheme.fontSizes.body,
+    fontFamily: theme.textTheme.fonts.main,
+    fontWeight: theme.textTheme.fontWeights.bold,
+  }
 });
 
 export default styles;

@@ -1,39 +1,12 @@
-import { FlatList, View, StyleSheet } from 'react-native';
+import { FlatList, View } from 'react-native';
 import RepositoryItem from './RepositoryItem'
+import ItemSeparator from './ItemSeparator';
 import useRepositories from '../hooks/useRepositories';
 import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
 import { useDebounce } from "use-debounce";
-import * as React from 'react';
 import { Searchbar } from 'react-native-paper';
-import theme from '../theme';
-
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-  },
-  list: {
-    padding: 10,
-    backgroundColor: theme.textTheme.backgrounds.grey,
-  },
-  pickerStyle: {
-    backgroundColor: theme.textTheme.backgrounds.normal,
-    borderRadius: 6,
-    marginBottom: 10,
-    overflow: 'hidden',
-    borderColor: theme.textTheme.colors.textBlack,
-    borderWidth: 1
-  },
-  searchStyle: {
-    height: 10,
-    backgroundColor: theme.textTheme.backgrounds.normal,
-    borderRadius: 6,
-    marginBottom: 10,
-    overflow: 'hidden',
-    borderColor: theme.textTheme.colors.textBlack,
-    borderWidth: 1
-  },
-});
+import styles from './repositoryStyles';
 
 export const RepositoryListContainer = ({ repositories, ListHeaderComponent }) => {
   const repositoryNodes = repositories
@@ -49,9 +22,6 @@ export const RepositoryListContainer = ({ repositories, ListHeaderComponent }) =
     />
   );
 };
-
-
-const ItemSeparator = () => <View style={styles.separator} />;
 
 const ListHeader = ({ value, onChange, searchOnChange, searchText }) => {
   return (
@@ -77,7 +47,6 @@ const RepositoryList = () => {
     order === 'highest' || order === 'lowest' ? 'RATING_AVERAGE' : 'CREATED_AT',
     order === 'lowest' ? 'ASC' : 'DESC', debouncedText
   );
-  console.log(debouncedText);
 
   return (
     <RepositoryListContainer

@@ -1,45 +1,11 @@
 import * as yup from 'yup';
 import Text from './Text';
-import { TextInput, Pressable, View, StyleSheet } from 'react-native';
+import { TextInput, Pressable, View } from 'react-native';
 import { useFormik } from 'formik';
 import { textTheme } from '../theme';
 import useSignIn from '../hooks/useSignIn'
 import { useNavigate } from 'react-router-native';
-
-
-const styles = StyleSheet.create({
-
-  inputField: {
-    fontWeight: textTheme.fontWeights.normal,
-    borderWidth: 1,
-    padding: 3,
-    color: textTheme.colors.textBlack,
-
-  },
-  inputInError: {
-    borderColor: textTheme.colors.errorRed
-  },
-  containerColumn: {
-    flex: 2,
-    flexDirection: 'column',
-    rowGap: 5,
-    alignItems: 'stretch',
-    padding: 10,
-  },
-  button: {
-    width: '100%',
-    backgroundColor: textTheme.backgrounds.blue,
-    paddingVertical: 10,
-    borderRadius: 4,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: textTheme.colors.textPrimary,
-    fontSize: textTheme.fontSizes.body,
-    fontFamily: textTheme.fonts.main,
-    fontWeight: textTheme.fontWeights.bold,
-  }
-});
+import { formStyles } from './repositoryStyles';
 
 const initialValues = {
   username: '',
@@ -64,11 +30,11 @@ export const SignInForm = ({ onSubmit }) => {
   });
 
   return (
-    <View style={styles.containerColumn}>
+    <View style={formStyles.containerColumn}>
       <TextInput
         style={[
-          styles.inputField,
-          formik.touched.username && formik.errors.username && styles.inputInError
+          formStyles.inputField,
+          formik.touched.username && formik.errors.username && formStyles.inputInError
         ]}
         placeholder="Username"
         placeholderTextColor={textTheme.colors.textSecondary}
@@ -81,8 +47,8 @@ export const SignInForm = ({ onSubmit }) => {
       )}
       <TextInput
         style={[
-          styles.inputField,
-          formik.touched.password && formik.errors.password && styles.inputInError
+          formStyles.inputField,
+          formik.touched.password && formik.errors.password && formStyles.inputInError
         ]}
         placeholder="Password"
         placeholderTextColor={textTheme.colors.textSecondary}
@@ -94,8 +60,8 @@ export const SignInForm = ({ onSubmit }) => {
       {formik.touched.password && formik.errors.password && (
         <Text style={{ color: 'red' }}>{formik.errors.password}</Text>
       )}
-      <Pressable style={styles.button} onPress={formik.handleSubmit}>
-        <Text style={styles.buttonText}>Sign In</Text>
+      <Pressable style={formStyles.button} onPress={formik.handleSubmit}>
+        <Text style={formStyles.buttonText}>Sign In</Text>
       </Pressable>
     </View>
   );
