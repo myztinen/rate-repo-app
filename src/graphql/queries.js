@@ -1,8 +1,14 @@
 import { gql } from '@apollo/client';
 
 export const GET_REPOSITORIES = gql`
-  query Repositories {
-    repositories {
+  query Repositories(
+    $orderBy: AllRepositoriesOrderBy = CREATED_AT
+    $orderDirection: OrderDirection = DESC
+    $searchKeyword: String = ""
+  ) {
+  repositories(orderBy: $orderBy,
+               orderDirection: $orderDirection,
+               searchKeyword: $searchKeyword) {
       totalCount
       edges {
         cursor
@@ -23,10 +29,24 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_ME = gql`
-  query Me {
+  query getCurrentUser ($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `;
